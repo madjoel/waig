@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="93.472168mm"
+   height="93.472168mm"
+   viewBox="0 0 93.472168 93.472168"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   sodipodi:docname="drawing.svg"
+   inkscape:export-filename="/home/matthieu/prog/java/waig/src/main/resources/assets/waig/icon.png"
+   inkscape:export-xdpi="34.782547"
+   inkscape:export-ydpi="34.782547"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:snap-bbox="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:zoom="0.77058782"
+     inkscape:cx="-8.435119"
+     inkscape:cy="207.6337"
+     inkscape:window-width="1918"
+     inkscape:window-height="1029"
+     inkscape:window-x="0"
+     inkscape:window-y="50"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="319.57675"
+       y="88.813812"
+       width="77.395988"
+       height="86.843712"
+       id="rect16351" />
+    <rect
+       x="321.27573"
+       y="80.920738"
+       width="98.253471"
+       height="94.575119"
+       id="rect12495" />
+    <marker
+       style="overflow:visible"
+       id="Arrow2Send"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Send"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.3,0,0,-0.3,0.69,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         id="path6317" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         id="path6305" />
+    </marker>
+    <rect
+       x="319.57675"
+       y="88.813812"
+       width="78.374268"
+       height="88.221344"
+       id="rect33019" />
+    <rect
+       x="319.57675"
+       y="88.813812"
+       width="65.281128"
+       height="81.594223"
+       id="rect44473" />
+    <rect
+       x="319.57675"
+       y="88.813812"
+       width="65.281128"
+       height="81.594223"
+       id="rect48113" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-10.925712,-11.674442)">
+    <g
+       id="g53435"
+       transform="translate(-0.00796996,-3.6582951)">
+      <path
+         style="fill:none;stroke:#40a636;stroke-width:3.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Send)"
+         d="M 57.679405,79.644267 C 54.999366,66.602462 49.323145,61.692773 39.098482,56.07969"
+         id="path7003"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#40a636;stroke-width:3.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Send)"
+         d="M 57.679405,79.644267 C 61.258081,64.458063 67.241519,56.48711 77.544813,49.747068"
+         id="path7389"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#a63636;stroke-width:3.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Send)"
+         d="M 57.679404,79.644266 V 42.132552"
+         id="path2982"
+         sodipodi:nodetypes="cc" />
+      <circle
+         style="fill:#422300;fill-opacity:1;stroke:none;stroke-width:4"
+         id="path879"
+         cx="57.679405"
+         cy="79.644264"
+         r="7.3165913" />
+    </g>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text12493"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'Red Hat Display';-inkscape-font-specification:'Red Hat Display';letter-spacing:0px;white-space:pre;shape-inside:url(#rect12495)" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,0.32840342,25.692123)"
+       id="text16349"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;line-height:1.25;font-family:'Red Hat Display';-inkscape-font-specification:'Red Hat Display';letter-spacing:0px;white-space:pre;shape-inside:url(#rect16351)"><tspan
+         x="319.57617"
+         y="146.06011"
+         id="tspan1092">E</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-66.86149,25.692123)"
+       id="text33017"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;line-height:1.25;font-family:'Red Hat Display';-inkscape-font-specification:'Red Hat Display';letter-spacing:0px;white-space:pre;shape-inside:url(#rect33019)"><tspan
+         x="319.57617"
+         y="146.06011"
+         id="tspan1094">W</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-33.031064,-7.0181352)"
+       id="text44471"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;line-height:1.25;font-family:'Red Hat Display';-inkscape-font-specification:'Red Hat Display';letter-spacing:0px;white-space:pre;shape-inside:url(#rect44473)"><tspan
+         x="319.57617"
+         y="146.06011"
+         id="tspan1096">N</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-31.828798,58.61388)"
+       id="text48111"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;line-height:1.25;font-family:'Red Hat Display';-inkscape-font-specification:'Red Hat Display';letter-spacing:0px;white-space:pre;shape-inside:url(#rect48113)"><tspan
+         x="319.57617"
+         y="146.06011"
+         id="tspan1098">S</tspan></text>
+    <circle
+       style="fill:none;fill-opacity:1;stroke:#a63636;stroke-width:3.66501;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path53141"
+       cx="57.661797"
+       cy="58.410526"
+       r="44.90358" />
+  </g>
+</svg>
