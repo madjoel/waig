@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "waig",
+  "version": "${version}",
+  "name": "Where Am I Going",
+  "description": "Adds a minimal RPG-inspired compass HUD to the game",
+  "authors": [
+    "Matthieu Laqua"
+  ],
+  "contributors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/waig/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "one.laqua.waig.WaigMod"
+    ],
+    "client": [],
+    "server": []
+  },
+  "mixins": [
+    "waig.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.6",
+    "fabric": "*"
+  }
+}
