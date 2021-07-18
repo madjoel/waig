@@ -8,6 +8,6 @@ TODO:
 - [x] implement
 - [x] image for GH
 - [x] move just under boss bar
-- [ ] make toggleable
+- [x] make toggleable
 - [ ] make public
 - [ ] maybe: make configurable so that it is only visible when compass held/in inventory
