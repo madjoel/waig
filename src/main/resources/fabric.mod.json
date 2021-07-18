@@ -8,7 +8,9 @@
     "Matthieu Laqua"
   ],
   "contributors": [],
-  "contact": {},
+  "contact": {
+      "sources": "https://github.com/madjoel/waig"
+  },
   "license": "MIT",
   "icon": "assets/waig/icon.png",
   "environment": "*",

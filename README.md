@@ -1,5 +1,6 @@
 # WAIG: Where Am I Going
-Fabric mod for Minecraft, adds a minimal RPG-inspired compass HUD to the game
+Fabric mod for Minecraft, adds a minimal RPG-inspired compass HUD to the game.
+This mod is client side only.
 
 ![Demo Image](demo.gif)
 
