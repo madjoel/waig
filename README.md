@@ -4,9 +4,10 @@ This mod is client side only.
 
 ![Demo Image](demo.gif)
 
-TODO:
-- [x] implement
-- [x] image for GH
-- [x] move just under boss bar
-- [x] make toggleable
-- [x] make public
+**Features:**
+
+- Always know in which direction your Minecraft character is going
+- Toggleable via key binding (default: F6)
+- Does not obstruct boss bars by moving down
+- Client side only
+- Scales with the GUI
