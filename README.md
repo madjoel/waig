@@ -9,4 +9,4 @@ TODO:
 - [x] image for GH
 - [x] move just under boss bar
 - [x] make toggleable
-- [ ] make public
+- [x] make public
