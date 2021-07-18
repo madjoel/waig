@@ -14,7 +14,13 @@ public class CompassHud {
     private static final String compass_text_triple = compass_text_simple + compass_text_simple + compass_text_simple;
     private static final int oneSideLength = 20;
 
+    private static boolean visible = true;
+
     public static void onHudRender(MatrixStack matrices, float v) {
+        if (!visible) {
+            return;
+        }
+
         MinecraftClient client = MinecraftClient.getInstance();
         ClientPlayerEntity p = client.player;
         if (p == null) {
@@ -41,4 +47,11 @@ public class CompassHud {
         return compass_text_triple.substring(textAnchor - oneSideLength, textAnchor + oneSideLength);
     }
 
+    public static void setVisible(boolean visible) {
+        CompassHud.visible = visible;
+    }
+
+    public static void toggleVisibility() {
+        setVisible(!visible);
+    }
 }
