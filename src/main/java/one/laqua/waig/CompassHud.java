@@ -5,6 +5,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.util.math.MatrixStack;
+import one.laqua.waig.mixin.BossBarHudAccessor;
 
 @Environment(EnvType.CLIENT)
 public class CompassHud {
@@ -27,8 +28,10 @@ public class CompassHud {
         int screenWidth = client.getWindow().getScaledWidth();
         int textWidthInPixels = client.textRenderer.getWidth(renderText);
 
-        int posX = screenWidth / 2 - textWidthInPixels / 2;
-        int posY = 10;
+        int posX = screenWidth / 2 - textWidthInPixels / 2; // center on the screen
+
+        int bossBarCount = ((BossBarHudAccessor) client.inGameHud.getBossBarHud()).getBossBars().size();
+        int posY = 3 + bossBarCount * 19;
 
         client.textRenderer.drawWithShadow(matrices, renderText, posX, posY, 0xFFFFFF);
     }
