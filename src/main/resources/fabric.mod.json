@@ -15,10 +15,10 @@
   "icon": "assets/waig/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
+    "main": [],
+    "client": [
       "one.laqua.waig.WaigMod"
     ],
-    "client": [],
     "server": []
   },
   "mixins": [
@@ -26,6 +26,7 @@
   ],
   "depends": {
     "fabricloader": ">=0.11.6",
-    "fabric": "*"
+    "fabric": "*",
+    "fabric-key-binding-api-v1": "*"
   }
 }
