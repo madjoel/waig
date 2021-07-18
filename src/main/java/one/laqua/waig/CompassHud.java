@@ -34,7 +34,7 @@ public class CompassHud {
         int screenWidth = client.getWindow().getScaledWidth();
         int textWidthInPixels = client.textRenderer.getWidth(renderText);
 
-        int posX = screenWidth / 2 - textWidthInPixels / 2; // center on the screen
+        int posX = screenWidth / 2 - textWidthInPixels / 2 - 2; // center on the screen
 
         int bossBarCount = ((BossBarHudAccessor) client.inGameHud.getBossBarHud()).getBossBars().size();
         int posY = 3 + bossBarCount * 19;
