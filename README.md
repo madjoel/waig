@@ -10,4 +10,3 @@ TODO:
 - [x] move just under boss bar
 - [x] make toggleable
 - [ ] make public
-- [ ] maybe: make configurable so that it is only visible when compass held/in inventory
