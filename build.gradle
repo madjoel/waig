@@ -54,6 +54,8 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 
 jar {
 	from "LICENSE"
+
+	exclude("/assets/waig/icon.svg")
 }
 
 // configure the maven publication
