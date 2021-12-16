@@ -1,12 +1,12 @@
 {
   "required": true,
+  "minVersion": "0.8",
   "package": "one.laqua.waig.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "BossBarHudAccessor"
   ],
   "client": [],
-  "server": [],
   "injectors": {
     "defaultRequire": 1
   }

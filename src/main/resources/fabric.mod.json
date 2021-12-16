@@ -1,34 +1,37 @@
 {
-   "schemaVersion":1,
-   "id":"waig",
-   "version":"${version}",
-   "name":"Where Am I Going",
-   "description":"Adds a minimal RPG-inspired compass HUD to the game",
-   "authors":[
-      "Matthieu Laqua"
-   ],
-   "contributors":[],
-   "contact":{
-      "homepage":"https://www.curseforge.com/minecraft/mc-mods/waig-where-am-i-going",
-      "sources":"https://github.com/madjoel/waig",
-      "issues":"https://github.com/madjoel/waig/issues"
-   },
-   "license":"MIT",
-   "icon":"assets/waig/icon.png",
-   "environment":"client",
-   "entrypoints":{
-      "main":[],
-      "client":[
-         "one.laqua.waig.WaigMod"
-      ],
-      "server":[]
-   },
-   "mixins":[
-      "waig.mixins.json"
-   ],
-   "depends":{
-      "fabricloader":">=0.11.6",
-      "fabric":"*",
-      "fabric-key-binding-api-v1":"*"
-   }
+  "schemaVersion":1,
+  "id": "waig",
+  "version": "${version}",
+  "name": "Where Am I Going",
+  "description": "Adds a minimal RPG-inspired compass HUD to the game",
+  "authors": [
+    "Matthieu Laqua"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/waig-where-am-i-going",
+    "sources": "https://github.com/madjoel/waig",
+    "issues": "https://github.com/madjoel/waig/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/waig/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [],
+    "client": [
+      "one.laqua.waig.client.WaigClient"
+    ],
+    "server": []
+  },
+  "mixins": [
+    "waig.mixins.json"
+  ],
+  "depends": {
+    "minecraft": [
+      "1.18",
+      "1.18.1"
+    ],
+    "fabricloader": ">=0.12.11",
+    "fabric": "*",
+    "fabric-key-binding-api-v1": "*"
+  }
 }
