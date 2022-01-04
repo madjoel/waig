@@ -5,6 +5,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.item.Items;
 import one.laqua.waig.mixin.BossBarHudAccessor;
 
 @Environment(EnvType.CLIENT)
@@ -24,6 +25,10 @@ public class CompassHud {
         MinecraftClient client = MinecraftClient.getInstance();
         ClientPlayerEntity p = client.player;
         if (p == null) {
+            return;
+        }
+
+        if (WaigConfig.onlyShowHudWhenCompassInHand() && !p.isHolding(Items.COMPASS)) {
             return;
         }
 

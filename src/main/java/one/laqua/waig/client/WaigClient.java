@@ -25,6 +25,9 @@ public class WaigClient implements ClientModInitializer {
     public void onInitializeClient() {
         log(Level.INFO, "Initializing");
 
+        // read config file located in ".minecraft/config/waig.config"
+        WaigConfig.readConfigFile();
+
         // register render callback
         HudRenderCallback.EVENT.register(CompassHud::onHudRender);
 
