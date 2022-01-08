@@ -50,7 +50,7 @@ public class WaigConfig {
                     try {
                         WaigConfig.hudShowMode = HudShowMode.valueOf(value);
                     } catch (IllegalArgumentException e) {
-                        WaigClient.log(Level.ERROR, "The value '" + value + "' for config key '"
+                        WaigClient.log(Level.ERROR, "The value '" + pieces[1].strip() + "' for config key '"
                                 + KEY_HUD_SHOW_MODE + "' is invalid. Possible values are: "
                                 + Arrays.toString(HudShowMode.values()).toLowerCase() + ". Falling back to default " +
                                 "value '" + HudShowMode.ALWAYS.name().toLowerCase() + "'.");
