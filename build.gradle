@@ -65,7 +65,8 @@ jar {
         rename { "${it}_${project.archivesBaseName}" }
     }
 
-    exclude("/assets/waig/icon.svg")
+    exclude("/assets/waig/icon-v1.svg")
+    exclude("/assets/waig/icon-v2.svg")
 }
 
 // configure the maven publication
