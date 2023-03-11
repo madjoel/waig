@@ -2,8 +2,8 @@ package one.laqua.waig.client.config;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import one.laqua.waig.client.WaigClient;
 import org.apache.logging.log4j.Level;
 
@@ -93,7 +93,7 @@ public class WaigConfig {
                                 Identifier itemIdentifier = new Identifier(idPieces[0].strip(), idPieces[1].strip());
 
                                 // this will need updating on Minecraft versions >=1.19.3, see https://fabricmc.net/wiki/tutorial:registry
-                                return Registry.ITEM.get(itemIdentifier);
+                                return Registries.ITEM.get(itemIdentifier);
                             })
                             .filter(item -> !item.equals(Items.AIR))
                             .collect(Collectors.toSet());
