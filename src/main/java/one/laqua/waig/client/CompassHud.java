@@ -5,10 +5,13 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import one.laqua.waig.client.config.WaigConfig;
 import one.laqua.waig.mixin.BossBarHudAccessor;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Environment(EnvType.CLIENT)
 public class CompassHud {
@@ -17,7 +20,9 @@ public class CompassHud {
     private static final String compass_text_triple = compass_text_simple + compass_text_simple + compass_text_simple;
     private static final int oneSideLength = 20;
 
-    private static final ItemStack compass_stack = Items.COMPASS.getDefaultStack();
+    private static final Set<ItemStack> compass_stacks = WaigConfig.getCompassItems().stream()
+            .map(Item::getDefaultStack)
+            .collect(Collectors.toSet());
 
     private static boolean visible = true;
 
@@ -39,12 +44,18 @@ public class CompassHud {
                 // nothing to check in this case, just continue
             }
             case INVENTORY -> {
-                if (!p.getInventory().contains(compass_stack)) {
+                boolean containsCompass = compass_stacks.stream()
+                        .anyMatch(itemStack -> p.getInventory().contains(itemStack));
+
+                if (!containsCompass) {
                     return;
                 }
             }
             case HAND -> {
-                if (!p.isHolding(Items.COMPASS)) {
+                boolean holdsCompass = WaigConfig.getCompassItems().contains(p.getOffHandStack().getItem())
+                                    || WaigConfig.getCompassItems().contains(p.getMainHandStack().getItem());
+
+                if (!holdsCompass) {
                     return;
                 }
             }

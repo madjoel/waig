@@ -22,3 +22,6 @@ This mod is client side only.
   - if set to `always` the HUD will always be displayed
   - if set to `inventory` the HUD will be displayed only if the player carries a compass in the inventory
   - if set to `hand` the HUD will be displayed only if the player holds a compass in the main hand or off-hand
+- `compass-items`: config key to list all items that count as compass equivalent. When `hud-show-mode` is set to
+  `inventory` or `hand`, the mod checks if any of the listed items are in the inventory or held, and if so will show
+  the HUD.
