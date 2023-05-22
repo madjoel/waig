@@ -6,10 +6,11 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import one.laqua.waig.client.config.WaigConfig;
 import one.laqua.waig.mixin.BossBarHudAccessor;
+import one.laqua.waig.mixin.CombinedInventoryAccessor;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,9 +21,7 @@ public class CompassHud {
     private static final String compass_text_triple = compass_text_simple + compass_text_simple + compass_text_simple;
     private static final int oneSideLength = 20;
 
-    private static final Set<ItemStack> compass_stacks = WaigConfig.getCompassItems().stream()
-            .map(Item::getDefaultStack)
-            .collect(Collectors.toSet());
+    private static final Set<Integer> compass_stacks = WaigConfig.getCompassItems();
 
     private static boolean visible = true;
 
@@ -44,16 +43,22 @@ public class CompassHud {
                 // nothing to check in this case, just continue
             }
             case INVENTORY -> {
-                boolean containsCompass = compass_stacks.stream()
-                        .anyMatch(itemStack -> p.getInventory().contains(itemStack));
+                Set<Integer> compassIds = new HashSet<>(compass_stacks);
+                Set<Integer> inventory = ((CombinedInventoryAccessor) p.getInventory()).getCombinedInventory()
+                        .stream().flatMap(defaultedList -> defaultedList.stream()
+                                .map(e -> Item.getRawId(e.getItem())))
+                        .collect(Collectors.toSet());
+
+                compassIds.retainAll(inventory);
+                boolean containsCompass = !compassIds.isEmpty();
 
                 if (!containsCompass) {
                     return;
                 }
             }
             case HAND -> {
-                boolean holdsCompass = WaigConfig.getCompassItems().contains(p.getOffHandStack().getItem())
-                                    || WaigConfig.getCompassItems().contains(p.getMainHandStack().getItem());
+                boolean holdsCompass = WaigConfig.getCompassItems().contains(Item.getRawId(p.getOffHandStack().getItem()))
+                                    || WaigConfig.getCompassItems().contains(Item.getRawId(p.getMainHandStack().getItem()));
 
                 if (!holdsCompass) {
                     return;

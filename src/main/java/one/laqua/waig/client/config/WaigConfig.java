@@ -26,13 +26,13 @@ public class WaigConfig {
     private static final String DEFAULT_COMPASS_ID = "minecraft:compass";
 
     private static HudShowMode hudShowMode = HudShowMode.ALWAYS;
-    private static Set<Item> compassItems = Set.of(Items.COMPASS);
+    private static Set<Integer> compassItems = Set.of(Item.getRawId(Items.COMPASS));
 
     public static HudShowMode getHudShowMode() {
         return hudShowMode;
     }
 
-    public static Set<Item> getCompassItems() {
+    public static Set<Integer> getCompassItems() {
         return compassItems;
     }
 
@@ -74,7 +74,7 @@ public class WaigConfig {
 
                 if (key.equals(KEY_COMPASS_ITEMS)) {
                     String[] potentialItems = pieces[1].strip().toLowerCase().split(",");
-                    Set<Item> configItems = Arrays.stream(potentialItems)
+                    Set<Integer> configItems = Arrays.stream(potentialItems)
                             .filter(potentialItemId -> potentialItemId.contains(":"))
                             .map(potentialItemId -> {
                                 String[] idPieces = potentialItemId.split(":");
@@ -87,15 +87,15 @@ public class WaigConfig {
                                     WaigClient.log(Level.ERROR, "The config value '" + potentialItemId + "' " +
                                             "contains illegal characters and cannot be parsed into an item. Please " +
                                             "check the config file for errors. Ignoring this value.");
-                                    return Items.AIR;
+                                    return Item.getRawId(Items.AIR);
                                 }
 
                                 Identifier itemIdentifier = new Identifier(idPieces[0].strip(), idPieces[1].strip());
 
                                 // this will need updating on Minecraft versions >=1.19.3, see https://fabricmc.net/wiki/tutorial:registry
-                                return Registry.ITEM.get(itemIdentifier);
+                                return Item.getRawId(Registry.ITEM.get(itemIdentifier));
                             })
-                            .filter(item -> !item.equals(Items.AIR))
+                            .filter(item -> !item.equals(Item.getRawId(Items.AIR)))
                             .collect(Collectors.toSet());
                     if (!configItems.isEmpty()) {
                         WaigConfig.compassItems = configItems;
