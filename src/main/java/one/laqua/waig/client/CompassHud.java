@@ -2,9 +2,10 @@ package one.laqua.waig.client;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.Item;
 import one.laqua.waig.client.config.WaigConfig;
 import one.laqua.waig.mixin.BossBarHudAccessor;
@@ -15,7 +16,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Environment(EnvType.CLIENT)
-public class CompassHud {
+public class CompassHud implements HudRenderCallback {
 
     private static final String compass_text_simple = "S . . . . . . . SW . . . . . . . W . . . . . . . NW . . . . . . . N . . . . . . . NE . . . . . . . E . . . . . . . SE . . . . . . . ";
     private static final String compass_text_triple = compass_text_simple + compass_text_simple + compass_text_simple;
@@ -25,7 +26,8 @@ public class CompassHud {
 
     private static boolean visible = true;
 
-    public static void onHudRender(MatrixStack matrices, float v) {
+    @Override
+    public void onHudRender(DrawContext drawContext, float tickDelta) {
         if (!visible) {
             return;
         }
@@ -78,7 +80,7 @@ public class CompassHud {
         int bossBarCount = ((BossBarHudAccessor) client.inGameHud.getBossBarHud()).getBossBars().size();
         int posY = 3 + bossBarCount * 19;
 
-        client.textRenderer.drawWithShadow(matrices, renderText, posX, posY, 0xFFFFFF);
+        drawContext.drawTextWithShadow(client.textRenderer, renderText, posX, posY, 0xFFFFFF);
     }
 
     private static String displayedText(float yaw) {

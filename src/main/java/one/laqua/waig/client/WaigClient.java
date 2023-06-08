@@ -30,7 +30,7 @@ public class WaigClient implements ClientModInitializer {
         WaigConfig.readConfigFile();
 
         // register render callback
-        HudRenderCallback.EVENT.register(CompassHud::onHudRender);
+        HudRenderCallback.EVENT.register(new CompassHud());
 
         // add key binding to toggle visibility of the hud
         KeyBinding binding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
