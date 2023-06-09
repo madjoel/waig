@@ -1,4 +1,12 @@
+<img height="96" align="right" src="./src/main/resources/assets/waig/icon.png" alt="WAIG Icon">
+
 # WAIG: Where Am I Going
+
+![Environment: client](https://img.shields.io/badge/environment-client-87CEFA?style=flat)
+[![modrinth downloads](https://img.shields.io/modrinth/dt/waig?color=00AF5C&label=modrinth&style=flat&logo=modrinth)](https://modrinth.com/mod/waig)
+[![CurseForge downloads](https://cf.way2muchnoise.eu/waig-where-am-i-going.svg)](https://www.curseforge.com/minecraft/mc-mods/waig-where-am-i-going)
+[![CurseForge versions](https://cf.way2muchnoise.eu/versions/waig-where-am-i-going.svg)](https://www.curseforge.com/minecraft/mc-mods/waig-where-am-i-going/files)
+
 Fabric mod for Minecraft, adds a minimal RPG-inspired compass HUD to the game.
 This mod is client side only.
 
