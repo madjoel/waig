@@ -90,7 +90,7 @@ public class WaigConfig {
                                     return Item.getRawId(Items.AIR);
                                 }
 
-                                Identifier itemIdentifier = new Identifier(idPieces[0].strip(), idPieces[1].strip());
+                                Identifier itemIdentifier = Identifier.of(idPieces[0].strip(), idPieces[1].strip());
 
                                 // this will need updating on Minecraft versions >=1.19.3, see https://fabricmc.net/wiki/tutorial:registry
                                 return Item.getRawId(Registries.ITEM.get(itemIdentifier));
