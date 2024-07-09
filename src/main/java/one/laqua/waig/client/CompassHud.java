@@ -33,8 +33,11 @@ public class CompassHud implements HudRenderCallback {
             return;
         }
 
-        // get the player
         MinecraftClient client = MinecraftClient.getInstance();
+        if (client.options.hudHidden) {
+            return;
+        }
+
         ClientPlayerEntity p = client.player;
         if (p == null) {
             return;
