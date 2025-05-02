@@ -5,9 +5,12 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.HudLayerRegistrationCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.IdentifiedLayer;
+import net.fabricmc.fabric.api.client.rendering.v1.LayeredDrawerWrapper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.util.Identifier;
 import one.laqua.waig.client.config.WaigConfig;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -15,12 +18,14 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
-public class WaigClient implements ClientModInitializer {
+public class WaigClient implements ClientModInitializer, HudLayerRegistrationCallback {
 
     public static Logger LOGGER = LogManager.getLogger();
 
     public static final String MOD_ID = "waig";
     public static final String MOD_NAME = "Where Am I Going";
+
+    private CompassHud compassHud;
 
     @Override
     public void onInitializeClient() {
@@ -30,7 +35,8 @@ public class WaigClient implements ClientModInitializer {
         WaigConfig.readConfigFile();
 
         // register render callback
-        HudRenderCallback.EVENT.register(new CompassHud());
+        this.compassHud = new CompassHud();
+        HudLayerRegistrationCallback.EVENT.register(this);
 
         // add key binding to toggle visibility of the hud
         KeyBinding binding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
@@ -50,5 +56,13 @@ public class WaigClient implements ClientModInitializer {
 
     public static void log(Level level, String message){
         LOGGER.log(level, "["+MOD_NAME+"] " + message);
+    }
+
+    @Override
+    public void register(LayeredDrawerWrapper layeredDrawer) {
+        layeredDrawer.addLayer(IdentifiedLayer.of(
+                Identifier.of(MOD_ID, "main_compass_layer"),
+                this.compassHud
+        ));
     }
 }

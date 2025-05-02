@@ -2,9 +2,9 @@ package one.laqua.waig.client;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.LayeredDrawer;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.player.PlayerInventory;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Environment(EnvType.CLIENT)
-public class CompassHud implements HudRenderCallback {
+public class CompassHud implements LayeredDrawer.Layer {
 
     private static final String compass_text_simple = "S . . . . . . . SW . . . . . . . W . . . . . . . NW . . . . . . . N . . . . . . . NE . . . . . . . E . . . . . . . SE . . . . . . . ";
     private static final String compass_text_triple = compass_text_simple + compass_text_simple + compass_text_simple;
@@ -31,7 +31,7 @@ public class CompassHud implements HudRenderCallback {
     private static boolean visible = true;
 
     @Override
-    public void onHudRender(DrawContext drawContext, RenderTickCounter renderTickCounter) {
+    public void render(DrawContext drawContext, RenderTickCounter renderTickCounter) {
         if (!visible) {
             return;
         }
