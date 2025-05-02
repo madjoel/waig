@@ -7,14 +7,17 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderTickCounter;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import one.laqua.waig.client.config.WaigConfig;
 import one.laqua.waig.mixin.BossBarHudAccessor;
-import one.laqua.waig.mixin.CombinedInventoryAccessor;
+import one.laqua.waig.mixin.EquipmentAccessor;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Environment(EnvType.CLIENT)
 public class CompassHud implements HudRenderCallback {
@@ -50,9 +53,13 @@ public class CompassHud implements HudRenderCallback {
             }
             case INVENTORY -> {
                 Set<Integer> compassIds = new HashSet<>(compass_stacks);
-                Set<Integer> inventory = ((CombinedInventoryAccessor) p.getInventory()).getCombinedInventory()
-                        .stream().flatMap(defaultedList -> defaultedList.stream()
-                                .map(e -> Item.getRawId(e.getItem())))
+                Set<Integer> inventory = Stream.concat(
+                                p.getInventory().getMainStacks().stream(),
+                                PlayerInventory.EQUIPMENT_SLOTS.values().stream()
+                                        .map(slot -> ((EquipmentAccessor) p.getInventory()).getEquipment().get(slot))
+                        )
+                        .map(ItemStack::getItem)
+                        .map(Item::getRawId)
                         .collect(Collectors.toSet());
 
                 compassIds.retainAll(inventory);
