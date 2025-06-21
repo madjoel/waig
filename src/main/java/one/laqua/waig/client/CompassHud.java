@@ -94,7 +94,7 @@ public class CompassHud implements HudElement {
         int bossBarCount = ((BossBarHudAccessor) client.inGameHud.getBossBarHud()).getBossBars().size();
         int posY = 3 + bossBarCount * 19;
 
-        drawContext.drawTextWithShadow(textRenderer, renderText, posX, posY, 0xFFFFFF);
+        drawContext.drawTextWithShadow(textRenderer, renderText, posX, posY, 0xFFFFFFFF);
     }
 
     private static String displayedText(float yaw) {
