@@ -69,6 +69,10 @@ jar {
     exclude("/assets/waig/icon-v2.svg")
 }
 
+remapJar {
+    archiveFileName.set("${project.archives_base_name}-${version}-mc${project.minecraft_version}.jar")
+}
+
 // configure the maven publication
 publishing {
     publications {
