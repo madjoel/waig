@@ -5,9 +5,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.api.client.rendering.v1.HudLayerRegistrationCallback;
-import net.fabricmc.fabric.api.client.rendering.v1.IdentifiedLayer;
-import net.fabricmc.fabric.api.client.rendering.v1.LayeredDrawerWrapper;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
@@ -18,14 +17,14 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
-public class WaigClient implements ClientModInitializer, HudLayerRegistrationCallback {
+public class WaigClient implements ClientModInitializer {
 
     public static Logger LOGGER = LogManager.getLogger();
 
     public static final String MOD_ID = "waig";
     public static final String MOD_NAME = "Where Am I Going";
 
-    private CompassHud compassHud;
+    public static final Identifier hudIdentifier = Identifier.of(MOD_ID + ":hud");
 
     @Override
     public void onInitializeClient() {
@@ -35,15 +34,14 @@ public class WaigClient implements ClientModInitializer, HudLayerRegistrationCal
         WaigConfig.readConfigFile();
 
         // register render callback
-        this.compassHud = new CompassHud();
-        HudLayerRegistrationCallback.EVENT.register(this);
+        HudElementRegistry.attachElementAfter(VanillaHudElements.BOSS_BAR, hudIdentifier, new CompassHud());
 
         // add key binding to toggle visibility of the hud
         KeyBinding binding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.waig.toggle",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_F6,
-                KeyBinding.UI_CATEGORY
+                KeyBinding.Category.MISC
         ));
 
         // add response to the keybinding
@@ -54,15 +52,7 @@ public class WaigClient implements ClientModInitializer, HudLayerRegistrationCal
         });
     }
 
-    public static void log(Level level, String message){
-        LOGGER.log(level, "["+MOD_NAME+"] " + message);
-    }
-
-    @Override
-    public void register(LayeredDrawerWrapper layeredDrawer) {
-        layeredDrawer.addLayer(IdentifiedLayer.of(
-                Identifier.of(MOD_ID, "main_compass_layer"),
-                this.compassHud
-        ));
+    public static void log(Level level, String message) {
+        LOGGER.log(level, "[" + MOD_NAME + "] " + message);
     }
 }
