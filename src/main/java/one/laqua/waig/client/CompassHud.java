@@ -4,6 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderTickCounter;
@@ -84,14 +85,16 @@ public class CompassHud implements HudElement {
         String renderText = displayedText(modYaw);
 
         int screenWidth = client.getWindow().getScaledWidth();
-        int textWidthInPixels = client.textRenderer.getWidth(renderText);
+
+        TextRenderer textRenderer = client.inGameHud.getTextRenderer();
+        int textWidthInPixels = textRenderer.getWidth(renderText);
 
         int posX = screenWidth / 2 - textWidthInPixels / 2 - 2; // center on the screen
 
         int bossBarCount = ((BossBarHudAccessor) client.inGameHud.getBossBarHud()).getBossBars().size();
         int posY = 3 + bossBarCount * 19;
 
-        context.drawTextWithShadow(client.textRenderer, renderText, posX, posY, 0xFFFFFFFF);
+        context.drawTextWithShadow(textRenderer, renderText, posX, posY, 0xFFFFFFFF);
     }
 
     private static String displayedText(float yaw) {
