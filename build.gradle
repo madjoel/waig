@@ -55,6 +55,9 @@ jar {
     from("LICENSE") {
         rename { "${it}_$projectName"}
     }
+
+    exclude("/assets/waig/icon-v1.svg")
+    exclude("/assets/waig/icon-v2.svg")
 }
 
 // configure the maven publication
