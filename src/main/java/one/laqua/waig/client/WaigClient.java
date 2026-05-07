@@ -4,12 +4,12 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.KeyMapping;
+import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.resources.Identifier;
 import one.laqua.waig.client.config.WaigConfig;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -24,7 +24,7 @@ public class WaigClient implements ClientModInitializer {
     public static final String MOD_ID = "waig";
     public static final String MOD_NAME = "Where Am I Going";
 
-    public static final Identifier hudIdentifier = Identifier.of(MOD_ID + ":hud");
+    public static final Identifier hudIdentifier = Identifier.parse(MOD_ID + ":hud");
 
     @Override
     public void onInitializeClient() {
@@ -37,16 +37,16 @@ public class WaigClient implements ClientModInitializer {
         HudElementRegistry.attachElementAfter(VanillaHudElements.BOSS_BAR, hudIdentifier, new CompassHud());
 
         // add key binding to toggle visibility of the hud
-        KeyBinding binding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        KeyMapping binding = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.waig.toggle",
-                InputUtil.Type.KEYSYM,
+                InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_F6,
-                KeyBinding.Category.MISC
+                KeyMapping.Category.MISC
         ));
 
         // add response to the keybinding
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (binding.wasPressed()) {
+        ClientTickEvents.END_CLIENT_TICK.register(_ -> {
+            while (binding.consumeClick()) {
                 CompassHud.toggleVisibility();
             }
         });

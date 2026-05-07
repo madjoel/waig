@@ -3,17 +3,18 @@ package one.laqua.waig.client;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.render.RenderTickCounter;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.DeltaTracker;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import one.laqua.waig.client.config.WaigConfig;
-import one.laqua.waig.mixin.BossBarHudAccessor;
+import one.laqua.waig.mixin.BossHealthOverlayAccessor;
 import one.laqua.waig.mixin.EquipmentAccessor;
+import org.jspecify.annotations.NonNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -32,17 +33,17 @@ public class CompassHud implements HudElement {
     private static boolean visible = true;
 
     @Override
-    public void render(DrawContext context, RenderTickCounter tickCounter) {
+    public void extractRenderState(@NonNull GuiGraphicsExtractor graphics, @NonNull DeltaTracker deltaTracker) {
         if (!visible) {
             return;
         }
 
-        MinecraftClient client = MinecraftClient.getInstance();
-        if (client.options.hudHidden) {
+        Minecraft client = Minecraft.getInstance();
+        if (client.options.hideGui) {
             return;
         }
 
-        ClientPlayerEntity p = client.player;
+        LocalPlayer p = client.player;
         if (p == null) {
             return;
         }
@@ -55,12 +56,12 @@ public class CompassHud implements HudElement {
             case INVENTORY -> {
                 Set<Integer> compassIds = new HashSet<>(compass_stacks);
                 Set<Integer> inventory = Stream.concat(
-                                p.getInventory().getMainStacks().stream(),
-                                PlayerInventory.EQUIPMENT_SLOTS.values().stream()
+                                p.getInventory().getNonEquipmentItems().stream(),
+                                Inventory.EQUIPMENT_SLOT_MAPPING.values().stream()
                                         .map(slot -> ((EquipmentAccessor) p.getInventory()).getEquipment().get(slot))
                         )
                         .map(ItemStack::getItem)
-                        .map(Item::getRawId)
+                        .map(Item::getId)
                         .collect(Collectors.toSet());
 
                 compassIds.retainAll(inventory);
@@ -71,8 +72,8 @@ public class CompassHud implements HudElement {
                 }
             }
             case HAND -> {
-                boolean holdsCompass = WaigConfig.getCompassItems().contains(Item.getRawId(p.getOffHandStack().getItem()))
-                                    || WaigConfig.getCompassItems().contains(Item.getRawId(p.getMainHandStack().getItem()));
+                boolean holdsCompass = WaigConfig.getCompassItems().contains(Item.getId(p.getOffhandItem().getItem()))
+                                    || WaigConfig.getCompassItems().contains(Item.getId(p.getMainHandItem().getItem()));
 
                 if (!holdsCompass) {
                     return;
@@ -80,21 +81,21 @@ public class CompassHud implements HudElement {
             }
         }
 
-        float modYaw = (p.headYaw % 360.0f + 360.0f) % 360.0f;
+        float modYaw = (p.yHeadRot % 360.0f + 360.0f) % 360.0f;
 
         String renderText = displayedText(modYaw);
 
-        int screenWidth = client.getWindow().getScaledWidth();
+        int screenWidth = client.getWindow().getGuiScaledWidth();
 
-        TextRenderer textRenderer = client.inGameHud.getTextRenderer();
-        int textWidthInPixels = textRenderer.getWidth(renderText);
+        Font textRenderer = client.gui.getFont();
+        int textWidthInPixels = textRenderer.width(renderText);
 
         int posX = screenWidth / 2 - textWidthInPixels / 2 - 2; // center on the screen
 
-        int bossBarCount = ((BossBarHudAccessor) client.inGameHud.getBossBarHud()).getBossBars().size();
+        int bossBarCount = ((BossHealthOverlayAccessor) client.gui.getBossOverlay()).getEvents().size();
         int posY = 3 + bossBarCount * 19;
 
-        context.drawTextWithShadow(textRenderer, renderText, posX, posY, 0xFFFFFFFF);
+        graphics.text(textRenderer, renderText, posX, posY, 0xFFFFFFFF);
     }
 
     private static String displayedText(float yaw) {
