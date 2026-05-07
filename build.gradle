@@ -56,6 +56,8 @@ jar {
         rename { "${it}_$projectName"}
     }
 
+    archiveFileName.set("${project.archives_base_name}-${version}-mc${project.minecraft_version}.jar")
+
     exclude("/assets/waig/icon-v1.svg")
     exclude("/assets/waig/icon-v2.svg")
 }
