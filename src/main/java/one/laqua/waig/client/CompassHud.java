@@ -39,7 +39,7 @@ public class CompassHud implements HudElement {
         }
 
         Minecraft client = Minecraft.getInstance();
-        if (client.options.hideGui) {
+        if (client.gui.hud.isHidden()) {
             return;
         }
 
@@ -87,12 +87,12 @@ public class CompassHud implements HudElement {
 
         int screenWidth = client.getWindow().getGuiScaledWidth();
 
-        Font textRenderer = client.gui.getFont();
+        Font textRenderer = client.gui.hud.getFont();
         int textWidthInPixels = textRenderer.width(renderText);
 
         int posX = screenWidth / 2 - textWidthInPixels / 2 - 2; // center on the screen
 
-        int bossBarCount = ((BossHealthOverlayAccessor) client.gui.getBossOverlay()).getEvents().size();
+        int bossBarCount = ((BossHealthOverlayAccessor) client.gui.hud.getBossOverlay()).getEvents().size();
         int posY = 3 + bossBarCount * 19;
 
         graphics.text(textRenderer, renderText, posX, posY, 0xFFFFFFFF);
