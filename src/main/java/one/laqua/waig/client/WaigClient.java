@@ -14,7 +14,6 @@ import one.laqua.waig.client.config.WaigConfig;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
 public class WaigClient implements ClientModInitializer {
@@ -39,8 +38,8 @@ public class WaigClient implements ClientModInitializer {
         // add key binding to toggle visibility of the hud
         KeyMapping binding = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.waig.toggle",
-                InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_F6,
+                InputConstants.Type.KEYBOARD,
+                InputConstants.KEY_F6,
                 KeyMapping.Category.MISC
         ));
 
